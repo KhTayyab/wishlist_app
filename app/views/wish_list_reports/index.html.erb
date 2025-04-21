@@ -1,0 +1,79 @@
+<%= form_tag wish_list_reports_path, :method => 'get' do %>
+  <div class="col-sm-12">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label>Start Date</label>
+        <%= text_field_tag(:start_date, @start_date, as: :date, :class => "form-control datepicker") %>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label>End Date</label>
+        <%= text_field_tag(:end_date, @end_date, as: :date, :class => "form-control datepicker") %>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12" style="display: none;">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <%= text_field_tag(:shop, @shop, :class => "form-control") %>
+        </div>
+      </div>
+    </div>
+  <div class="col-sm-12 text-center">    
+    <div class="form-group">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-2"></div>
+      <div class="col-sm-2">
+        <%= submit_tag "Generate Report", :class => "btn btn-primary" %>
+      </div>
+      <div class="col-sm-2">
+        <%= link_to "Excel Export", excel_report_wish_list_reports_path(:shop => params[:shop], :start_date => @start_date, :end_date => @end_date), :class => "btn btn-primary" %>
+      </div>
+      <div class="col-sm-2"></div>
+      <div class="col-sm-2"></div>
+    </div>
+  </div>
+<% end %>
+
+
+<div class="col-sm-12">
+  <h2 class="text-center">Daily Wish List Report</h2>
+  <div class="table-responsive">
+    <table class="table table-condensed table-hover">
+      <thead>
+        <tr>
+          <th class="col-sm-3">Product Title</th>
+          <th class="col-sm-3">Product SKU</th>
+          <th class="col-sm-3">Barcode</th>
+          <th class="col-sm-2">Customer Email</th>
+          <th class="col-sm-2">Customer Name</th>
+          <th class="col-sm-2">Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @wish_lists.count > 0 %>
+          <% @wish_lists.each do |wish_list| %>
+            <tr>
+              <td class="col-sm-3"><%= wish_list.product_title %></td>
+              <td class="col-sm-3"><%= wish_list.product_sku %></td>
+              <td class="col-sm-2"><%= wish_list.barcode %></td>
+              <td class="col-sm-2"><%= wish_list.customer_email %></td>
+              <td class="col-sm-2"><%= wish_list.customer_name %></td>
+              <td class="col-sm-2"><%= wish_list.wish_list_date.strftime("%d-%m-%Y") %></td>
+            </tr>
+          <% end %>
+        <% else %>
+          <td colspan="10" class="text-center"> No History Found </td>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <br>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.datepicker').datepicker();
+  });
+</script>

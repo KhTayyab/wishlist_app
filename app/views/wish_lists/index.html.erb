@@ -1,0 +1,59 @@
+<% content_for :javascript do %>
+  <script type="text/javascript">
+     ShopifyApp.ready(function(){
+       ShopifyApp.Bar.initialize({ title: "Wishlist" });
+     });
+  </script>
+<% end %>
+<div class="col-sm-12">
+  <h2 class="text-center">Wish List</h2>
+  <div class="table-responsive">
+    <table class="table table-condensed table-hover">
+      <thead>
+        <tr>
+          <th class="col-sm-2">Product Image</th>
+          <th class="col-sm-2">Product Title</th>
+          <th>Product SKU</th>
+          <th>Barcode</th>
+          <th>Customer Email</th>
+          <th>Customer Name</th>
+          <th>Date</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @wish_lists.count > 0 %>
+          <% @wish_lists.each do |wish_list| %>
+            <tr>
+              <td class="col-sm-2">
+                <img src="<%= wish_list.product_image %>" style="width: 100px;">
+              </td>
+              <td class="col-sm-2"><%= wish_list.product_title %></td>
+              <td><%= link_to "#{wish_list.product_sku}", wish_list_by_product_wish_lists_path(:shop => params[:shop], :product_id => wish_list.product_id) %></td>
+              <td><%= wish_list.barcode %></td>
+              <td><%= link_to "#{wish_list.customer_email}", wish_list_by_customer_wish_lists_path(:shop => params[:shop], :customer_id => wish_list.customer_id) %></td>
+              <td><%= wish_list.customer_name %></td>
+              <td>
+                <% if wish_list.wish_list_date.nil? %>
+                  <%= "-" %>
+                <% else %>
+                  <%= wish_list.wish_list_date.strftime("%d-%m-%Y") %>
+                <% end %>
+                
+              </td>
+              <td class="text-center">
+                <%= link_to remove_wishlist_item_wish_lists_path(:shop => params[:shop], :id => wish_list.id), method: :delete do %>
+                <i class="glyphicon glyphicon-remove-circle"></i>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        <% else %>
+          <td colspan="7" class="text-center"> No History Found </td>
+        <% end %>
+      </tbody>
+    </table>
+    <%= will_paginate @wish_lists %>
+  </div>
+  <br>
+</div>

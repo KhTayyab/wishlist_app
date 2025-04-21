@@ -1,0 +1,12 @@
+<% content_for :javascript do %>
+  <script type="text/javascript">
+     ShopifyApp.ready(function(){
+       ShopifyApp.Bar.initialize({ title: "Application Configration" });
+     });
+  </script>
+<% end %>
+<h1>New App Configuration</h1>
+
+<%= render 'form', app_configuration: @app_configuration %>
+
+<%= link_to 'Back', app_configurations_path %>

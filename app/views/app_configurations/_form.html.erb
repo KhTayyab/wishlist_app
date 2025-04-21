@@ -1,0 +1,63 @@
+<%= form_for(app_configuration) do |f| %>
+  <div class="col-sm-12">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= f.label :shop_name, "Shop Name" %>
+        <%= f.text_field :shop_name, :class => 'form-control' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-12">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= f.label :shop_url, "Shop Address" %>
+        <%= f.text_field :shop_url, :class => 'form-control' %>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= f.label :actual_shop_url, "Shopify Shop Address" %>
+        <%= f.text_field :actual_shop_url, :class => 'form-control' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-12">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= f.label :api_key, "Shopify App Api Key" %>
+        <%= f.text_field :api_key, :class => 'form-control' %>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= f.label :api_password, "Shopify App Api Password" %>
+        <%= f.text_field :api_password, :class => 'form-control' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-12">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= f.label :to_email_address, "To Email Addresses" %>
+        <%= f.text_field :to_email_address, :class => 'form-control' %>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= f.label :cc_email_address, "CC Email Addresses" %>
+        <%= f.text_field :cc_email_address, :class => 'form-control' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-12">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <%= f.submit :class => "btn btn-primary", :value => "Save Setting" %>
+      </div>
+    </div>
+  </div>
+<% end %>

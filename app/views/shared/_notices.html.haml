@@ -1,0 +1,12 @@
+-if(flash[:notice].blank? == false)
+	%div.alert.alert-dismissable.alert-warning.text-center
+		%span
+			=flash[:notice]
+-if(flash[:alert].blank? == false)
+	%div.alert.alert-dismissable.alert-danger.text-center
+		%span
+			=flash[:alert]
+-if(flash[:success].blank? == false)
+	%div.alert.alert-dismissable.alert-success.text-center
+		%span
+			=flash[:success]

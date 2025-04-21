@@ -1,0 +1,14 @@
+<html>
+
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+
+<body>
+  <% if (not @body_text.nil?) and (not @body_text.blank?) %>
+    <p><%= @body_text.html_safe %></p>
+    <p><a href=<%= "#{@file_path}" %>>Click Here to Download Wish List</a></p>
+  <% end %>
+</body>
+
+</html>

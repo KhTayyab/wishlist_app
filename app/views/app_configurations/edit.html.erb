@@ -1,0 +1,14 @@
+<% content_for :javascript do %>
+  <script type="text/javascript">
+     ShopifyApp.ready(function(){
+       ShopifyApp.Bar.initialize({ title: "Application Configration" });
+     });
+  </script>
+<% end %>
+<h2 style="margin-left:25px;">Application Configration</h2>
+<% if params[:notice].present? %>
+  <div class="alert alert-danger" role="alert" style="margin-left: 25px;margin-right: 25px;">
+    <%= params[:notice] %>
+  </div>
+<% end %>
+<%= render 'form', app_configuration: @app_configuration %>
